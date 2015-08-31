@@ -12,7 +12,6 @@ $(document).on 'click','.page-new-question-mapping .delete',->
     $(".page-new-question-mapping .item:first").after(fuben)
     $(".page-new-question-mapping .item:last").addClass('hidden')
   $(this).closest('.item').remove();
-
 $(document).on 'click','.page-new-question-mapping .append',->
   count_hidden = $('.option-key-field .hidden').length
   if count_hidden==1
