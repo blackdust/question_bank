@@ -19,6 +19,19 @@ module QuestionBank
       end
       hash
     end
-    # 验证
+
+    def question_records_attributes=(hash)
+      @question_records_user_ids = []
+      @question_records_user_ids = hash.map do |key,value|
+        value["user_id"]
+      end
+    end
+
+    before_validation :deal_illegal_operation
+    def deal_illegal_operation
+      if @question_records_user_ids.uniq.count != 1 || @question_records_user_ids.uniq.first.to_s != self.user.id.to_s
+        errors.add(:user_id, "用户字段非法输入")
+      end
+    end                           
   end
 end

@@ -21,8 +21,9 @@
             - section.questions.each_with_index do |sq, sq_index|
               - question = sq
               - current_question_index = question_index
-              %li
+              %li{:data => question.id}
                 .question_content= question.content
+                %i.glyphicon.glyphicon-remove.red.hidden
                 .answers
                   %input{type:"hidden", name: "test_paper_result[question_records_attributes][#{question_index}][question_id]", value:question.id.to_s}
                   %input{type:"hidden", name: "test_paper_result[question_records_attributes][#{question_index}][user_id]", value: current_user.id.to_s}

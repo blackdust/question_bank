@@ -13,6 +13,5 @@ module QuestionBank
       test_paper_result.save
       render :json => test_paper_result.to_create_hash
     end
-
   end
 end

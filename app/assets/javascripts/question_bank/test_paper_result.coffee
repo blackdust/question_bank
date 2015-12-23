@@ -13,14 +13,13 @@ class TestPaperResult
         method: "POST"
         data: data
       .success (msg) =>
-        # 1 后台接到正确的params
-        # 2 控制器处理
-        # 3 写这个coffee
-        # if msg["is_correct"]
-          # @$ele.find(".do-question-msg").text("回答正确")
-        # else
-          # @$ele.find(".do-question-msg").text("回答错误")
-
+        @$ele.find('.glyphicon-remove.red').addClass('hidden')
+        msgs = $.map msg, (key,value)->
+          [[key,value]]
+        for x in [0..msgs.length-1]
+          if msgs[x][0].is_correct is false
+            $area = @$ele.find("[data=#{msgs[x][1]}]")
+            $area.find('.glyphicon-remove.red').removeClass('hidden')
 
 jQuery(document).on 'ready page:load', ->
   if jQuery('.page-test-paper-result-new').length > 0
